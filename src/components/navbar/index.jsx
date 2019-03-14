@@ -80,7 +80,7 @@ const Navbar = (props) => {
                     root: classes.tabRoot,
                     selected: classes.tabSelected
                   }}
-                  label="Animals"
+                  label="ANIMALS"
                 />
                 <Tab
                   disableRipple
@@ -88,7 +88,7 @@ const Navbar = (props) => {
                     root: classes.tabRoot,
                     selected: classes.tabSelected
                   }}
-                  label="Fruits & Veg"
+                  label="FRUITS & VEG"
                 />
               </Tabs>
             </Grid>
