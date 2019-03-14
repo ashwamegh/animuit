@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,7 +19,7 @@ const styles = theme => ({
     borderBottom: "none"
   },
   tabsIndicator: {
-    backgroundColor: "#1890ff"
+    backgroundColor: theme.palette.primary.main
   },
   tabRoot: {
     textTransform: "initial",
@@ -39,15 +39,15 @@ const styles = theme => ({
       '"Segoe UI Symbol"'
     ].join(","),
     "&:hover": {
-      color: "#40a9ff",
+      color: theme.palette.primary.light,
       opacity: 1
     },
     "&$tabSelected": {
-      color: "#1890ff",
+      color: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightMedium
     },
     "&:focus": {
-      color: "#40a9ff"
+      color: theme.palette.primary.light
     }
   },
   tabSelected: {},
@@ -56,57 +56,47 @@ const styles = theme => ({
   }
 });
 
-class Navbar extends Component {
-  state = {
-    value: 0
-  };
+const Navbar = (props) => {
+  const { classes } = props;
+  const [value, setValue] = useState(0);
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <AppBar classes={{ root: classes.appbarRoot} }position="static" color="default">
-          <Toolbar>
-            <Grid container spacing={24} alignItems="baseline">
-              <Grid item xs={12} className={classes.flex}>
-                <Tabs
-                  value={value}
-                  onChange={this.handleChange}
+  return (
+    <div className={classes.root}>
+      <AppBar classes={{ root: classes.appbarRoot} }position="static" color="default">
+        <Toolbar>
+          <Grid container spacing={24} alignItems="baseline">
+            <Grid item xs={12} className={classes.flex}>
+              <Tabs
+                value={value}
+                onChange={(event, value) => setValue(value)}
+                classes={{
+                  root: classes.tabsRoot,
+                  indicator: classes.tabsIndicator
+                }}
+              >
+                <Tab
+                  disableRipple
                   classes={{
-                    root: classes.tabsRoot,
-                    indicator: classes.tabsIndicator
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected
                   }}
-                >
-                  <Tab
-                    disableRipple
-                    classes={{
-                      root: classes.tabRoot,
-                      selected: classes.tabSelected
-                    }}
-                    label="Animals"
-                  />
-                  <Tab
-                    disableRipple
-                    classes={{
-                      root: classes.tabRoot,
-                      selected: classes.tabSelected
-                    }}
-                    label="Fruits & Veg"
-                  />
-                </Tabs>
-              </Grid>
+                  label="Animals"
+                />
+                <Tab
+                  disableRipple
+                  classes={{
+                    root: classes.tabRoot,
+                    selected: classes.tabSelected
+                  }}
+                  label="Fruits & Veg"
+                />
+              </Tabs>
             </Grid>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
 Navbar.propTypes = {
