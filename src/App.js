@@ -16,7 +16,7 @@ class App extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.container}>
+      <div>
         <Navbar />
         <Main />
       </div>
