@@ -5,14 +5,19 @@ import { Navbar, Main } from "./components";
 class App extends Component {
   state = {
     items: [],
-    isLoading: true
+    isLoading: false
   };
+
+  componentWillMount(){
+    this.updateItemsList("animals");
+  }
 
   fetchItems = endpoint => {
     return new Promise((resolve, reject) => {
       fetch(endpoint)
         .then(response => {
           if (response.status !== 200) {
+            this.setState({ isLoading: false });
             reject(
               "Looks like there was a problem. Status Code: " + response.status
             );
@@ -20,10 +25,12 @@ class App extends Component {
 
           // Examine the items in the response
           response.json().then((data) => {
+            this.setState({ isLoading: false });
             resolve(data);
           });
         })
-        .catch(function(err) {
+        .catch((err) => {
+          this.setState({ isLoading: false });
           reject("Fetch Error :-S", err);
         });
     });
@@ -31,20 +38,21 @@ class App extends Component {
 
   updateItemsList = category => {
     try {
+      this.setState({ isLoading: true });
       switch (category) {
         case "animals":
           this.fetchItems("http://styleguide.effectivedigital.com/interview/api/animals")
-          .then((response) => console.log(response));
+          .then((items) => this.setState({ items }));
           return;
         case "fruits&veg":
           this.fetchItems("http://styleguide.effectivedigital.com/interview/api/fruitveg")
-          .then((response) => console.log(response));
+          .then((items) => this.setState({ items }));
           return;
         default:
           return;
       }
     } catch (error) {
-      
+      console.error(error);
     }
     
   };
