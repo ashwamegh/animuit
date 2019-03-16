@@ -18,9 +18,16 @@ const styles = theme => ({
     boxShadow: "none",
     borderBottom: "1px solid #efefef"
   },
+  logoButton: {
+    "&:hover": {
+      backgroundColor: "inherit"
+    }
+  },
   logoButtonIcon: {
     fill: theme.palette.primary.main,
-    marginTop: 4
+    marginTop: 4,
+    marginLeft: 16,
+    marginRight: -16
   },
   gridWrapper: {
     padding: "0 60px",
@@ -80,9 +87,11 @@ const Navbar = props => {
         color="default"
       >
         <Toolbar>
-          <IconButton>
-            <PhotoLibrary className={classes.logoButtonIcon}/>
-          </IconButton>
+          <a href="/">
+            <IconButton className={classes.logoButton}>
+              <PhotoLibrary className={classes.logoButtonIcon} />
+            </IconButton>
+          </a>
           <Grid
             container
             className={classes.gridWrapper}
