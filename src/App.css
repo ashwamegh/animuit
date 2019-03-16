@@ -2,10 +2,8 @@
 
 #masonry { 
   display: flex; 
-  flex-direction: column; 
+  flex-direction: row; 
   flex-wrap: wrap;
-  /* height: 100vw; */
-  max-height: 800px;
   font-size: 0;  
 }
 #masonry img {  
