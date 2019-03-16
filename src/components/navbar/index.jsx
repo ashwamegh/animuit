@@ -76,14 +76,14 @@ const styles = theme => ({
 });
 
 const Navbar = props => {
-  const { classes } = props;
+  const { classes, loadItems } = props;
   const [value, setValue] = useState(0);
 
   return (
     <div className={classes.root}>
       <AppBar
         classes={{ root: classes.appbarRoot }}
-        position="static"
+        position="fixed"
         color="default"
       >
         <Toolbar>
@@ -114,6 +114,7 @@ const Navbar = props => {
                     selected: classes.tabSelected
                   }}
                   label="ANIMALS"
+                  onClick={() => loadItems("animals")}
                 />
                 <Tab
                   disableRipple
@@ -122,6 +123,7 @@ const Navbar = props => {
                     selected: classes.tabSelected
                   }}
                   label="FRUITS & VEG"
+                  onClick={() => loadItems("fruits&veg")}
                 />
               </Tabs>
             </Grid>
@@ -133,7 +135,8 @@ const Navbar = props => {
 };
 
 Navbar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loadItems: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Navbar);
