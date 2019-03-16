@@ -6,20 +6,32 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoLibrary from "@material-ui/icons/PhotoLibraryRounded";
 
 const styles = theme => ({
   root: {
     flexGrow: 1
   },
-  appbarRoot:{
+  appbarRoot: {
     backgroundColor: theme.palette.colors.white,
-    boxShadow: 'none',
+    boxShadow: "none",
+    borderBottom: "1px solid #efefef"
+  },
+  logoButtonIcon: {
+    fill: theme.palette.primary.main,
+    marginTop: 4
+  },
+  gridWrapper: {
+    padding: "0 60px",
+    height: "100%"
   },
   tabsRoot: {
     borderBottom: "none"
   },
   tabsIndicator: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    bottom: 4
   },
   tabRoot: {
     textTransform: "initial",
@@ -56,15 +68,27 @@ const styles = theme => ({
   }
 });
 
-const Navbar = (props) => {
+const Navbar = props => {
   const { classes } = props;
   const [value, setValue] = useState(0);
 
   return (
     <div className={classes.root}>
-      <AppBar classes={{ root: classes.appbarRoot} }position="static" color="default">
+      <AppBar
+        classes={{ root: classes.appbarRoot }}
+        position="static"
+        color="default"
+      >
         <Toolbar>
-          <Grid container spacing={24} alignItems="baseline">
+          <IconButton>
+            <PhotoLibrary className={classes.logoButtonIcon}/>
+          </IconButton>
+          <Grid
+            container
+            className={classes.gridWrapper}
+            spacing={24}
+            alignItems="baseline"
+          >
             <Grid item xs={12} className={classes.flex}>
               <Tabs
                 value={value}
@@ -97,7 +121,7 @@ const Navbar = (props) => {
       </AppBar>
     </div>
   );
-}
+};
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired
