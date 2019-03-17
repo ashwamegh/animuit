@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import { withSize } from 'react-sizeme';
 
 const styles = theme => ({
   root: {
@@ -38,7 +39,7 @@ const styles = theme => ({
     animation: 'fadeIn 1s ease-in both',
   },
   gridListTileInner: {
-    borderRadius: 8,
+    borderRadius: 0,
   },
   '@keyframes fadeIn': {
     'from': {
@@ -53,14 +54,28 @@ const styles = theme => ({
 });
 
 const Main = props => {
-  const { classes, isLoading, items } = props;
+  const { classes, isLoading, items, size } = props;
+  const deviceWidth = size.width;
+  let cols=3;
+
+  if(deviceWidth >= 1192){
+    cols = 5;
+  }else if(deviceWidth >= 767){
+    cols = 4;
+  }else if(deviceWidth >= 512){
+    cols = 3;
+  }else if (deviceWidth >= 392){
+    cols = 2;
+  }else if(deviceWidth < 392){
+    cols = 1;
+  }
 
   return (
     <main className={classes.root}>
       {isLoading?
         <CircularProgress disableShrink />:
         <div className={classes.listWrapper}>
-        <GridList id="masonry" cellHeight={160} className={classes.gridList} cols={3}>
+        <GridList id="masonry" cellHeight={160} className={classes.gridList} cols={cols}>
           {items.map(tile => (
             <GridListTile classes={{ root: classes.gridListTile, tile: classes.gridListTileInner}} key={tile.Id} cols={tile.cols || 1}>
               <img src={tile.ImageURLs.Thumb} alt={tile.Title} />
@@ -77,6 +92,7 @@ Main.propTypes = {
   classes: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
+  size: PropTypes.number.isRequired,
 }
 
-export default withStyles(styles)(Main);
+export default withSize()(withStyles(styles)(Main));
