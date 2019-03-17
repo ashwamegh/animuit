@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import classNames from 'classnames';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -41,6 +42,10 @@ const styles = theme => ({
     bottom: 10,
     background: "rgba(0,0,0,0.6)",
     padding: 12
+  },
+  dialogContentTextMobile: {
+    position: 'static',
+    marginTop: -12
   },
   dialogContentTextTypo: {
     color: theme.palette.colors.white
@@ -126,25 +131,29 @@ const Main = props => {
             src={open && selectedImage.ImageURLs.FullSize}
             alt="Zoomed"
           />
-          <DialogContentText classes={{ root: classes.dialogContentText }}>
+          <DialogContentText classes={{ root: classNames(classes.dialogContentText, size.width < 512 && classes.dialogContentTextMobile) }}>
             <Typography
               classes={{ body1: classes.dialogContentTextTypo }}
               variant="body1"
-              gutterBottom
             >
               {selectedImage.Title}
             </Typography>
             <Typography
               classes={{ body2: classes.dialogContentTextTypo }}
               variant="body2"
-              gutterBottom
             >
               {`Family: ${selectedImage.Family}`}
             </Typography>
             <Typography
+              classes={{ body2: classes.dialogContentTextTypo }}
+              variant="body2"
+            >
+              {selectedImage.CollectiveNoun && `Collective Noun: ${selectedImage.CollectiveNoun}`}
+              {selectedImage.Genus && `Genus: ${selectedImage.Genus}`}
+            </Typography>
+            <Typography
               classes={{ caption: classes.dialogContentTextTypo }}
               variant="caption"
-              gutterBottom
             >
               {selectedImage.Description}
             </Typography>
