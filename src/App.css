@@ -5,6 +5,7 @@
   flex-direction: row; 
   flex-wrap: wrap;
   font-size: 0;  
+  justify-content: flex-start;
 }
 #masonry img {  
   /* width: 33.3%; */
@@ -12,7 +13,9 @@
   cursor: zoom-in;
 } 
 
-#masonry:hover img { opacity: 0.3; }
+#masonry:hover img { 
+  opacity: 0.6;
+}
 #masonry:hover img:hover { opacity: 1; } 
 
 /* fallback for earlier versions of Firefox */
