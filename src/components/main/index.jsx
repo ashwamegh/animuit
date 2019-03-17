@@ -39,7 +39,7 @@ const styles = theme => ({
   },
   dialogContentText: {
     position: "absolute",
-    bottom: 10,
+    bottom: 0,
     background: "rgba(0,0,0,0.6)",
     padding: 12
   },
@@ -54,7 +54,7 @@ const styles = theme => ({
     width: "auto",
     margin: 24,
     maxWidth: "90%",
-    animation: "zoom 0.6s"
+    animation: "zoom 0.6s",
   },
   dialogImage: {
     width: "100%"
