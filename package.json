@@ -26,5 +26,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage" : "https://ashwamegh.github.io/animuit"
+  "homepage" : "https://animuit.surge.sh/"
 }
