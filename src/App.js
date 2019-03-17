@@ -8,7 +8,7 @@ class App extends Component {
     isLoading: false
   };
 
-  componentWillMount(){
+  componentWillMount() {
     this.updateItemsList("animals");
   }
 
@@ -24,12 +24,12 @@ class App extends Component {
           }
 
           // Examine the items in the response
-          response.json().then((data) => {
+          response.json().then(data => {
             this.setState({ isLoading: false });
             resolve(data);
           });
         })
-        .catch((err) => {
+        .catch(err => {
           this.setState({ isLoading: false });
           reject("Fetch Error :-S", err);
         });
@@ -41,12 +41,14 @@ class App extends Component {
       this.setState({ isLoading: true });
       switch (category) {
         case "animals":
-          this.fetchItems("http://styleguide.effectivedigital.com/interview/api/animals")
-          .then((items) => this.setState({ items }));
+          this.fetchItems(
+            "http://styleguide.effectivedigital.com/interview/api/animals"
+          ).then(items => this.setState({ items }));
           return;
         case "fruits&veg":
-          this.fetchItems("http://styleguide.effectivedigital.com/interview/api/fruitveg")
-          .then((items) => this.setState({ items }));
+          this.fetchItems(
+            "http://styleguide.effectivedigital.com/interview/api/fruitveg"
+          ).then(items => this.setState({ items }));
           return;
         default:
           return;
@@ -54,7 +56,6 @@ class App extends Component {
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   render() {
@@ -62,7 +63,7 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar loadItems={this.updateItemsList}/>
+        <Navbar loadItems={this.updateItemsList} />
         <Main isLoading={isLoading} items={items} />
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classNames from 'classnames';
+import classNames from "classnames";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
@@ -44,7 +44,7 @@ const styles = theme => ({
     padding: 12
   },
   dialogContentTextMobile: {
-    position: 'static',
+    position: "static",
     marginTop: -12
   },
   dialogContentTextTypo: {
@@ -131,7 +131,14 @@ const Main = props => {
             src={open && selectedImage.ImageURLs.FullSize}
             alt="Zoomed"
           />
-          <DialogContentText classes={{ root: classNames(classes.dialogContentText, size.width < 512 && classes.dialogContentTextMobile) }}>
+          <DialogContentText
+            classes={{
+              root: classNames(
+                classes.dialogContentText,
+                size.width < 512 && classes.dialogContentTextMobile
+              )
+            }}
+          >
             <Typography
               classes={{ body1: classes.dialogContentTextTypo }}
               variant="body1"
@@ -148,7 +155,8 @@ const Main = props => {
               classes={{ body2: classes.dialogContentTextTypo }}
               variant="body2"
             >
-              {selectedImage.CollectiveNoun && `Collective Noun: ${selectedImage.CollectiveNoun}`}
+              {selectedImage.CollectiveNoun &&
+                `Collective Noun: ${selectedImage.CollectiveNoun}`}
               {selectedImage.Genus && `Genus: ${selectedImage.Genus}`}
             </Typography>
             <Typography

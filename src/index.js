@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import deepPurple from "@material-ui/core/colors/deepPurple";
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'light',
+    type: "light",
     primary: {
       main: deepPurple[500],
       light: deepPurple[300],
-      dark: deepPurple[700],
+      dark: deepPurple[700]
     },
-    colors:{
-      white: '#fff'
+    colors: {
+      white: "#fff"
     }
   },
   typography: {
@@ -33,21 +33,22 @@ const theme = createMuiTheme({
     ].join(","),
     useNextVariants: true,
     fontSize: 16,
-    fontWeight: 300,
+    fontWeight: 300
   },
   props: {
     MuiButtonBase: {
       disableRipple: true
     }
-  },
+  }
 });
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-  <App />
-  </MuiThemeProvider>
-  
-  , document.getElementById('root'));
+    <App />
+  </MuiThemeProvider>,
+
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

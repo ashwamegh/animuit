@@ -1,7 +1,4 @@
-import Navbar from './navbar';
-import Main from './main';
+import Navbar from "./navbar";
+import Main from "./main";
 
-export {
-  Navbar,
-  Main
-}
+export { Navbar, Main };
