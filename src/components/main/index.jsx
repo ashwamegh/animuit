@@ -55,6 +55,7 @@ const styles = theme => ({
     margin: 24,
     maxWidth: "90%",
     animation: "zoom 0.6s",
+    overflow: 'hidden'
   },
   dialogImage: {
     width: "100%"
@@ -70,7 +71,8 @@ const styles = theme => ({
   gridList: {
     width: "100%",
     height: "100%",
-    transform: "translateZ(0)"
+    transform: "translateZ(0)",
+    overflow: 'hidden'
   },
   gridListTile: {
     animation: "fadeIn 1s ease-in both"
