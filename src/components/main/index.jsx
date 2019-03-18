@@ -193,7 +193,7 @@ const Main = props => {
                   setDialogStatus(true);
                 }}
               >
-                <img src={tile.ImageURLs.Thumb} alt={tile.Title} />
+                <img src={tile.ImageURLs.FullSize} alt={tile.Title} />
                 <GridListTileBar
                   title={tile.Title}
                   subtitle={<span>Family: {tile.Family}</span>}
